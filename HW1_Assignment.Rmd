@@ -81,10 +81,17 @@ sum
 
 c. assuming `x` equals the 10th virginica iris, then $4\cdot x/2^3$
 ```{r}
-
+x = iris[which(iris$Species == 'virginica'),]
+x = data.frame(iris[110,1:4])
+x/(2^3)*4
 ```
 
 d. assuming `x` equals the sum of all setosa sepal widths, then $4\cdot(x/2)^3$.
+```{r}
+x2 = iris[which(iris$Species == "setosa"),]
+x2 = sum(x2$Sepal.Width)
+x2/(2^3)*4
+```
 
 
 ### 4. Using the Instructor Notes from Week 03, address the following:

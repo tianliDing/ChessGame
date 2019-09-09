@@ -462,9 +462,20 @@ for (i in 1:length(iris$Petal.Length)) {
 sum</code></pre>
 <pre><code>## [1] 73.1</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
-<li><p>assuming <code>x</code> equals the 10th virginica iris, then <span class="math inline">\(4\cdot x/2^3\)</span></p></li>
-<li><p>assuming <code>x</code> equals the sum of all setosa sepal widths, then <span class="math inline">\(4\cdot(x/2)^3\)</span>.</p></li>
+<li>assuming <code>x</code> equals the 10th virginica iris, then <span class="math inline">\(4\cdot x/2^3\)</span></li>
 </ol>
+<pre class="r"><code>x = iris[which(iris$Species == 'virginica'),]
+x = data.frame(iris[110,1:4])
+x/(2^3)*4</code></pre>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 110          3.6         1.8         3.05        1.25</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>assuming <code>x</code> equals the sum of all setosa sepal widths, then <span class="math inline">\(4\cdot(x/2)^3\)</span>.</li>
+</ol>
+<pre class="r"><code>x2 = iris[which(iris$Species == &quot;setosa&quot;),]
+x2 = sum(x2$Sepal.Width)
+x2/(2^3)*4</code></pre>
+<pre><code>## [1] 85.7</code></pre>
 </div>
 <div id="using-the-instructor-notes-from-week-03-address-the-following" class="section level3">
 <h3>4. Using the Instructor Notes from Week 03, address the following:</h3>
