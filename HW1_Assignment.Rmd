@@ -142,4 +142,4 @@ c. a screenshot of RStudio with the 4 panes basic such that there's a Git tab in
 
 
 d. the push/pull pop up window of RStudio with the final commit message of your homework submission.
-![pop up](/Users/tianliding/Desktop/Screen Shot 2019-09-13 at 1.36.21 PM.png)
+
