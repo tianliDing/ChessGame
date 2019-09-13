@@ -72,7 +72,7 @@ b. the sum of all petal lengths among all species of iris that are between 0 cm 
 ```{r}
 sum = 0
 for (i in 1:length(iris$Petal.Length)) {
-  if(iris$Petal.Length[i] < 3)
+  if(iris$Petal.Length[i] <= 3)
     sum = sum + iris$Petal.Length[i]
   i = i+1
 }
@@ -97,18 +97,44 @@ x2/(2^3)*4
 ### 4. Using the Instructor Notes from Week 03, address the following:
 
 a. run the code that appears in the "Try This at Home" section at the very bottom
+```{r}
+set.seed(13) ## set the random seed
+x <- rnorm(n = 20) ## generate predictor variable
+y <- rnorm(n = 20, mean = x) ## generate response variable
+plot(y ~ x, pch = 19) ## plot (x,y) pairs
+dat <- data.frame(y = y, x = x)
+model <- lm(y ~ x, data = dat)
+summary(model)
+```
 
 b. change the seed number in the `set.seed()` command from 13 to 14. Then, re-run the code in part **a**.
+```{r}
+set.seed(14) ## set the random seed
+x <- rnorm(n = 20) ## generate predictor variable
+y <- rnorm(n = 20, mean = x) ## generate response variable
+plot(y ~ x, pch = 19) ## plot (x,y) pairs
+dat <- data.frame(y = y, x = x)
+model <- lm(y ~ x, data = dat)
+summary(model)
+```
 
 c. Is there a difference between the results of parts **a** and **b**? If so, describe some of the obvious differences.
-
-d. Why is it important to set the random seed at the beginning of a simulation?
+ 
+ **Yes, the results from part a and b are different. One of the obvious difference is that different seeds gives the different random value. **
+ 
+d. Why is it important to set the random seed at the beginning of a simulation?  
+  
+  Since we want to make sure that everytime we are running the simulation, we get the same result by setting a fixed seed. If we do not set a seed, then it will generate different result which is hard for us to check the answer.
+  
 
 ### 5. Find images that address the following:
 
 a. a screenshot that shows your personal repo in GitHub Enterprise
-
-b. a screenshot of the Git terminal (or shell) open within RStudio
+![my personal repo](/Users/tianliding/Desktop/repo.png)
+  
+b. a screenshot of the Git terminal (or shell) open within RStudio 
+  ![git terminal](/Users/tianliding/Desktop/Screen\ Shot\ 2019-09-13\ at\ 1.11.06\ PM.png )
+  
 
 c. a screenshot of RStudio with the 4 panes basic such that there's a Git tab in the top right pane, and the files in the repo in the bottom right pane
 
