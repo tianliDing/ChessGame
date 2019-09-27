@@ -1,0 +1,182 @@
+---
+title: "STAT 385 Fall 2019 Homework Assignment 01"
+author: "Tianli Ding"
+date: "Due by 12:00 PM 09/14/2019"
+header-includes: \usepackage{xcolor}
+output: pdf_document
+---
+
+\sffamily\fboxrule.1em\fboxsep1em
+\fcolorbox{black}{blue!50}{\color{white}
+\begin{minipage}[c][19cm][t]{15cm}
+\section{Grader Comment}
+\subsection{}
+
+
+Efficiency:
+\bigbreak
+The code and document is written with lots of logical thought about the tasks with few unnecessary or unnecessarily verbose lines and is written in a least brute force way.
+\bigbreak
+
+Correctness:
+\bigbreak
+The files run with no errors and the coding is written in a most accurate way.
+\bigbreak
+
+Documentation:
+\bigbreak
+The explanations and comments contain reasonable clarity and exhibit mid-tier (to be expected) fundamentals of usefulness, grammar, smoothness, and structure.
+\bigbreak
+
+Beauty:
+\bigbreak
+The document is more visually appealing and has decent readability. The coding output and visualizations are averagely attractive.
+
+\bigbreak
+NOTE:
+\bigbreak
+Please note that the summary above applies to the completed work. If the submission was incomplete, the ultimate mark for the submission will be scaled down proportionally.  
+\bigbreak
+Please take care to ensure that one's repo includes the image files that are included in one's .rmd file.  Otherwise, they may not appear in the graded work that is pushed to the student's git.
+\bigbreak
+Please see comments below for specifics.
+\end{minipage}}
+
+Below you will find problems for you to complete as an individual. It is fine to discuss the homework problems with classmates, but cheating is prohibited and will be harshly penalized if detected.
+
+
+### 1. With the `data(pressure)` dataset in R, do the following:
+
+a. run the command that shows the help page of the median function
+
+```{r}
+help(median)
+```
+
+
+b. show the first 10 rows and 2 columns of the `data(pressure)` dataset
+```{r}
+head(pressure, 10)
+```
+
+
+c. run the command `head(pressure)`
+```{r}
+head(pressure)
+```
+
+d. describe the differences between parts **b** and **c**.
+
+In part **b**, we manually set the rows that displayed to 10. While in part **c**, it shows only 6 lines by default.
+
+### 2. With the `data(cars)` dataset in R, compute the following:
+
+a. the median of the stopping distance
+```{r}
+median(cars$dist)
+```
+
+b. the mean of the speed
+```{r}
+mean(cars$speed)
+```
+
+
+c. the five number summary of both the mean and speed
+```{r}
+#the five number summary of both the stopping distance and speed:
+summary(cars)
+```
+
+
+d. the plot of the stopping distance (vertical axis) versus the speed (horizontal axis) making sure the axes are written exactly as "distance" and "speed", while the title as "Speed and Stopping Distances of Cars".
+```{r}
+plot(cars$speed, cars$dist, xlab = "distance", ylab = "speed", main = "Speed and Stopping Distances of Cars")
+```
+
+
+### 3. With the `data(iris)` dataset in R, do the following calculations:
+
+a. the sum of the 25th and 26th versicolor iris's sepal lengths divided by 2
+```{r}
+which(iris$Species == 'versicolor')[25]
+which(iris$Species == 'versicolor')[26]
+(iris$Sepal.Length[75] + iris$Sepal.Length[76])/2
+
+```
+
+b. the sum of all petal lengths among all species of iris that are between 0 cm and 3 cm
+```{r}
+sum = 0
+for (i in 1:length(iris$Petal.Length)) {
+  if(iris$Petal.Length[i] <= 3)
+    sum = sum + iris$Petal.Length[i]
+  i = i+1
+}
+sum
+```
+
+c. assuming `x` equals the 10th virginica iris, then $4\cdot x/2^3$
+```{r}
+x = iris[which(iris$Species == 'virginica'),]
+x = data.frame(iris[110,1:4])
+x/(2^3)*4
+```
+
+d. assuming `x` equals the sum of all setosa sepal widths, then $4\cdot(x/2)^3$.
+```{r}
+x2 = iris[which(iris$Species == "setosa"),]
+x2 = sum(x2$Sepal.Width)
+x2/(2^3)*4
+```
+
+
+### 4. Using the Instructor Notes from Week 03, address the following:
+
+a. run the code that appears in the "Try This at Home" section at the very bottom
+```{r}
+set.seed(13) ## set the random seed
+x <- rnorm(n = 20) ## generate predictor variable
+y <- rnorm(n = 20, mean = x) ## generate response variable
+plot(y ~ x, pch = 19) ## plot (x,y) pairs
+dat <- data.frame(y = y, x = x)
+model <- lm(y ~ x, data = dat)
+summary(model)
+```
+
+b. change the seed number in the `set.seed()` command from 13 to 14. Then, re-run the code in part **a**.
+```{r}
+set.seed(14) ## set the random seed
+x <- rnorm(n = 20) ## generate predictor variable
+y <- rnorm(n = 20, mean = x) ## generate response variable
+plot(y ~ x, pch = 19) ## plot (x,y) pairs
+dat <- data.frame(y = y, x = x)
+model <- lm(y ~ x, data = dat)
+summary(model)
+```
+
+c. Is there a difference between the results of parts **a** and **b**? If so, describe some of the obvious differences.
+ 
+ **Yes, the results from part a and b are different. One of the obvious difference is that different seeds gives the different random value. **
+ 
+d. Why is it important to set the random seed at the beginning of a simulation?  
+  
+  Since we want to make sure that everytime we are running the simulation, we get the same result by setting a fixed seed. If we do not set a seed, then it will generate different result which is hard for us to check the answer.
+  
+
+### 5. Find images that address the following:
+
+a. a screenshot that shows your personal repo in GitHub Enterprise
+
+  
+b. a screenshot of the Git terminal (or shell) open within RStudio 
+
+  
+
+c. a screenshot of RStudio with the 4 panes basic such that there's a Git tab in the top right pane, and the files in the repo in the bottom right pane
+
+
+
+
+d. the push/pull pop up window of RStudio with the final commit message of your homework submission.
+
