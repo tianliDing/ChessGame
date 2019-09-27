@@ -88,8 +88,8 @@ Determine which level of `z` has a higher mean in `y`.  Report your results.
 *Level 3 of z has a higher mean in y than level 1.*
 
 b.  The fourth line of the code in part a generates `y` as a linear function of the numeric variable `x` and the factor variable `z`.  Can you determine that the linear modeling assumptions are satisfied for the regression of `y` on `x` and `z`? Explain why or why not in detail. **Hint**: read the documentation of the `rnorm` function and examine its defaults.  The linear modeling assumptions are: 1) there is a linear relationship between the response variable and the predictor variables; 2) there is no auto-correlation (cases are independent); 3) errors are normally distributed; 4) the standard deviation of the errors are constant across all predictor variables (the values of `x` and the levels of `z` in this problem).  There is no need to use numerical or graphical summaries to verify whether or not these modeling assumptions hold, all of the necessary information is contained in the code chunk in part **a**.
-
-
+  
+  Solution: the linear modeling assumptions are satisfied for the regression of y on x and z. There is a linear relationship between the response variable and the predictor variables and there is no correlations. The errors are random and normally distributed, and the standard deviation of the errors are constant across all predictor variables.
 	
 	
 ### 3. Using functions, lists, matrices and vectors, complete the following:
