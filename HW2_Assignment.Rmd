@@ -1,5 +1,5 @@
 ---
-title: "STAT 385 Homework Assignment02"
+title: "STAT 385 Homework Assignment 02"
 author: "Tianli Ding"
 date: "Due by 12:00 PM 09/28/2019"
 output: html_document
