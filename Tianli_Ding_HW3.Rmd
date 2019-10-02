@@ -1,0 +1,6 @@
+---
+title: "Tianli_Ding_HW3"
+author: "Tianli Ding"
+date: "10/2/2019"
+output: html_document
+---
