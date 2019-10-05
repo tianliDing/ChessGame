@@ -2,10 +2,58 @@
 title: "STAT 385 Homework Assignment 02"
 author: "Tianli Ding"
 date: "Due by 12:00 PM 09/28/2019"
-output: html_document
+header-includes: \usepackage{xcolor}
+output: pdf_document
+keep_tex: yes
 ---
+
+\sffamily\fboxrule.1em\fboxsep1em
+\fcolorbox{black}{blue!50}{\color{white}
+\begin{minipage}[c][19cm][t]{15cm}
+\section{Grader Comment}
+\subsection{}
+
+
+Efficiency:
+\bigbreak
+The code and document is written with lots of logical thought about the tasks with few unnecessary or unnecessarily verbose lines and is written in a least brute force way.
+\bigbreak
+
+
+Correctness:
+\bigbreak
+The files run with no errors and the coding is written in a most accurate way.
+\bigbreak
+
+
+Documentation:
+\bigbreak
+The explanations and comments contain reasonable clarity and exhibit mid-tier (to be expected) fundamentals of usefulness, grammar, smoothness, and structure.
+\bigbreak
+
+
+Beauty:
+\bigbreak
+The document is most visually appealing and has the strongest readability. The coding output and visualizations are very attractive.
+
+
+\bigbreak
+\bigbreak
+\bigbreak
+\bigbreak
+\bigbreak
+Please note that the summary above applies to the completed work. If the submission was incomplete, the ultimate mark for the submission will be scaled down proportionally.  
+\bigbreak
+Please take care to ensure that one's repo includes the image files that are included in one's .Rmd file.  Otherwise, the graded file that is returned to the student may not contain the images.
+\bigbreak
+You may find that your returned work (.Rmd and .pdf) has had sections removed.  This is only for accelerating the grading process by removing code chunks that are impeding knitting.  If you believe that you were incorrectly penalized for missing work, please do contact the TA and/or professor.
+\bigbreak
+Please see comments below for specifics.
+\end{minipage}}
+
+
 ```{r}
-library(bit64)
+
 library(dplyr)
 library(data.table)
 ```
