@@ -200,7 +200,7 @@ The proportion of mainland North American males aged 20-29 that lived in 1970 or
 ### 5. With the tidyverse package and its functions, do the following with the [CCSO Bookings Data](https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv):
 
 a. show only the 2012 bookings for people ages 17-23 years old not residing in Illinois and show the data dimension
-```{r}
+```{r, message=FALSE}
 library(bit64)
 library(dplyr)
 ccso = read.csv("https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv")
@@ -225,15 +225,15 @@ dim(newc)
 ```
 
 d. repeat parts a-c using only pipe operators
-```{r, include = FALSE}
+```{r, eval = FALSE}
 ## a
 ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
 ```
-```{r, include= FALSE}
+```{r, eval= FALSE}
 ## b
 ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
 ```
-```{r, include= FALSE}
+```{r, eval= FALSE}
 ## c
 ccso %>% filter(CITY == "CHAMPAIGN" | CITY == "URBANA", RACE == "Asian/Pacific Islander")
 ```

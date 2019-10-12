@@ -570,59 +570,9 @@ proportion</code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>show only the 2012 bookings for people ages 17-23 years old not residing in Illinois and show the data dimension</li>
 </ol>
-<pre class="r"><code>library(bit64)</code></pre>
-<pre><code>## Loading required package: bit</code></pre>
-<pre><code>## Attaching package bit</code></pre>
-<pre><code>## package:bit (c) 2008-2012 Jens Oehlschlaegel (GPL-2)</code></pre>
-<pre><code>## creators: bit bitwhich</code></pre>
-<pre><code>## coercion: as.logical as.integer as.bit as.bitwhich which</code></pre>
-<pre><code>## operator: ! &amp; | xor != ==</code></pre>
-<pre><code>## querying: print length any all min max range sum summary</code></pre>
-<pre><code>## bit access: length&lt;- [ [&lt;- [[ [[&lt;-</code></pre>
-<pre><code>## for more help type ?bit</code></pre>
-<pre><code>## 
-## Attaching package: 'bit'</code></pre>
-<pre><code>## The following object is masked from 'package:base':
-## 
-##     xor</code></pre>
-<pre><code>## Attaching package bit64</code></pre>
-<pre><code>## package:bit64 (c) 2011-2012 Jens Oehlschlaegel</code></pre>
-<pre><code>## creators: integer64 seq :</code></pre>
-<pre><code>## coercion: as.integer64 as.vector as.logical as.integer as.double as.character as.bin</code></pre>
-<pre><code>## logical operator: ! &amp; | xor != == &lt; &lt;= &gt;= &gt;</code></pre>
-<pre><code>## arithmetic operator: + - * / %/% %% ^</code></pre>
-<pre><code>## math: sign abs sqrt log log2 log10</code></pre>
-<pre><code>## math: floor ceiling trunc round</code></pre>
-<pre><code>## querying: is.integer64 is.vector [is.atomic} [length] format print str</code></pre>
-<pre><code>## values: is.na is.nan is.finite is.infinite</code></pre>
-<pre><code>## aggregation: any all min max range sum prod</code></pre>
-<pre><code>## cumulation: diff cummin cummax cumsum cumprod</code></pre>
-<pre><code>## access: length&lt;- [ [&lt;- [[ [[&lt;-</code></pre>
-<pre><code>## combine: c rep cbind rbind as.data.frame</code></pre>
-<pre><code>## WARNING don't use as subscripts</code></pre>
-<pre><code>## WARNING semantics differ from integer</code></pre>
-<pre><code>## for more help type ?bit64</code></pre>
-<pre><code>## 
-## Attaching package: 'bit64'</code></pre>
-<pre><code>## The following object is masked from 'package:bit':
-## 
-##     still.identical</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     :, %in%, is.double, match, order, rank</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:gdata':
-## 
-##     combine, first, last</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>ccso = read.csv(&quot;https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv&quot;)</code></pre>
+<pre class="r"><code>library(bit64)
+library(dplyr)
+ccso = read.csv(&quot;https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv&quot;)</code></pre>
 <pre class="r"><code>newa = filter(ccso,  Age.at.Arrest &gt;= 17 &amp; Age.at.Arrest &lt;= 23 &amp; ccso$STATE != &quot;ILLINOIS&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &gt;= &quot;2012/01/01&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &lt; &quot;2013/01/01&quot;)
 dim(newa)</code></pre>
 <pre><code>## [1] 102  35</code></pre>
@@ -641,6 +591,12 @@ dim(newc)</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>repeat parts a-c using only pipe operators</li>
 </ol>
+<pre class="r"><code>## a
+ccso %&gt;% filter(Age.at.Arrest &gt;= 17 &amp; Age.at.Arrest &lt;= 23 &amp; ccso$STATE != &quot;ILLINOIS&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &gt;= &quot;2012/01/01&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &lt; &quot;2013/01/01&quot;)</code></pre>
+<pre class="r"><code>## b
+ccso %&gt;% filter(Age.at.Arrest &gt;= 17 &amp; Age.at.Arrest &lt;= 23 &amp; ccso$STATE != &quot;ILLINOIS&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &gt;= &quot;2012/01/01&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &lt; &quot;2013/01/01&quot;)</code></pre>
+<pre class="r"><code>## c
+ccso %&gt;% filter(CITY == &quot;CHAMPAIGN&quot; | CITY == &quot;URBANA&quot;, RACE == &quot;Asian/Pacific Islander&quot;)</code></pre>
 </div>
 </div>
 
