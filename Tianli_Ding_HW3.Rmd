@@ -190,7 +190,7 @@ b. The code in part **a** is partially commented.  Add comments to all remaining
 c. Determine the proportion of mainland North American males aged 20-29 that lived in 1970 or before.
 ```{r}
 dataset$year = as.numeric(as.character(dataset$year))
-newdataset = filter(dataset, dataset$year <= 1970)
+newdataset = dataset[dataset$year <= 1970,]
 proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
 proportion
 ```

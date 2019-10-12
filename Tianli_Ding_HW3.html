@@ -558,10 +558,10 @@ pops &lt;- unlist(lapply(dataset.years.list, function(x) sum(x[, 3:4])))</code><
 <li><p>Determine the proportion of mainland North American males aged 20-29 that lived in 1970 or before.</p></li>
 </ol>
 <pre class="r"><code>dataset$year = as.numeric(as.character(dataset$year))
-newdataset = filter(dataset, dataset$year &lt;= 1970)
+newdataset = dataset[dataset$year &lt;= 1970,]
 proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
 proportion</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre><code>## [1] 0.2273674</code></pre>
 <p>The proportion of mainland North American males aged 20-29 that lived in 1970 or before is 0.1876567</p>
 </div>
 <div id="with-the-tidyverse-package-and-its-functions-do-the-following-with-the-ccso-bookings-data" class="section level3">
