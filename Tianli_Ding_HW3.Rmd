@@ -9,6 +9,7 @@ output: html_document
 
 Below you will find problems for you to complete as an individual. It is fine to discuss the homework problems with classmates, but cheating is prohibited and will be harshly penalized if detected.
 
+
 ### 1. Create a custom volume measurement function that will convert the following units of volume:
 a. 13 imperial (liquid) cups to cubic inches.
 b. 2.5 US customary (liquid) gallons to fluid ounces.
@@ -189,19 +190,55 @@ b. The code in part **a** is partially commented.  Add comments to all remaining
 
 c. Determine the proportion of mainland North American males aged 20-29 that lived in 1970 or before.
 ```{r}
-dataset[dataset[,1] %in% c("Canada", "United States of America"),]
+#newdataset = dataset[dataset[,1] %in% c("Canada", "United States of America"),]
+#newdataset$year = as.numeric(as.character(newdataset$year))
+#newdataset = filter(newdataset, newdataset$year <= 1970)
+#proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
+#proportion
 ```
-
+The proportion of mainland North American males aged 20-29 that lived in 1970 or before is proportion
 
 ### 5. With the tidyverse package and its functions, do the following with the [CCSO Bookings Data](https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv):
 
 a. show only the 2012 bookings for people ages 17-23 years old not residing in Illinois and show the data dimension
 ```{r}
+library(bit64)
+library(dplyr)
+ccso = read.csv("https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv")
+head(ccso)
+```
 
+
+```{r}
+newa = filter(ccso,  Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
+dim(newa)
 ```
 
 b. show only the bookings for people who have employment status as "student" booked after the year 2012 residing in Danville and show the data dimension
+```{r}
+newb = filter(ccso, EMPLOYMENT.STATUS == "Student" & CITY == "DANVILLE" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2013/01/01")
+dim(newb)
+```
 
 c. show only the bookings for Asian people residing in the cities of Champaign or Urbana and show the data dimension
+```{r}
+newc = filter(ccso, CITY == "CHAMPAIGN" | CITY == "URBANA", RACE == "Asian/Pacific Islander" )
+dim(newc)
+```
 
 d. repeat parts a-c using only pipe operators
+```{r, include = FALSE}
+## a
+ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
+```
+
+```{r, include= FALSE}
+## b
+ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
+```
+```{r, include= FALSE}
+## c
+ccso %>% filter(CITY == "CHAMPAIGN" | CITY == "URBANA", RACE == "Asian/Pacific Islander")
+```
+
+
