@@ -151,7 +151,7 @@ No, the test statistics from the first and second columns does not have the same
 
 a. make sure you have the dataset [WPP2010.csv](https://uofi.box.com/shared/static/vielwghs3qtdf2p25nejeiaq6ce9nonf.csv) (your file location may need to change) and then run the commands: 
 
-```{r, eval = FALSE}
+```{r}
 # load in UN dataset and remove irrelevant variables
 options(warn=-1)
 WPP2010 <- read.csv("WPP2010.csv", header = TRUE)
@@ -190,13 +190,12 @@ b. The code in part **a** is partially commented.  Add comments to all remaining
 
 c. Determine the proportion of mainland North American males aged 20-29 that lived in 1970 or before.
 ```{r}
-#newdataset = dataset[dataset[,1] %in% c("Canada", "United States of America"),]
-#newdataset$year = as.numeric(as.character(newdataset$year))
-#newdataset = filter(newdataset, newdataset$year <= 1970)
-#proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
-#proportion
+dataset$year = as.numeric(as.character(dataset$year))
+newdataset = filter(dataset, dataset$year <= 1970)
+proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
+proportion
 ```
-The proportion of mainland North American males aged 20-29 that lived in 1970 or before is proportion
+The proportion of mainland North American males aged 20-29 that lived in 1970 or before is 0.1876567
 
 ### 5. With the tidyverse package and its functions, do the following with the [CCSO Bookings Data](https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv):
 
@@ -205,7 +204,6 @@ a. show only the 2012 bookings for people ages 17-23 years old not residing in I
 library(bit64)
 library(dplyr)
 ccso = read.csv("https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv")
-head(ccso)
 ```
 
 
@@ -231,7 +229,6 @@ d. repeat parts a-c using only pipe operators
 ## a
 ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")
 ```
-
 ```{r, include= FALSE}
 ## b
 ccso %>% filter(Age.at.Arrest >= 17 & Age.at.Arrest <= 23 & ccso$STATE != "ILLINOIS" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") >= "2012/01/01" & as.Date(ccso$BOOKING.DATE, "%m/%d/%Y") < "2013/01/01")

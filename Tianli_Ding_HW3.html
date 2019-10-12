@@ -558,12 +558,12 @@ pops &lt;- unlist(lapply(dataset.years.list, function(x) sum(x[, 3:4])))</code><
 <li><p>The code in part <strong>a</strong> is partially commented. Add comments to all remaining lines of code to make the script clear.</p></li>
 <li><p>Determine the proportion of mainland North American males aged 20-29 that lived in 1970 or before.</p></li>
 </ol>
-<pre class="r"><code>#newdataset = dataset[dataset[,1] %in% c(&quot;Canada&quot;, &quot;United States of America&quot;),]
-#newdataset$year = as.numeric(as.character(newdataset$year))
-#newdataset = filter(newdataset, newdataset$year &lt;= 1970)
-#proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
-#proportion</code></pre>
-<p>The proportion of mainland North American males aged 20-29 that lived in 1970 or before is proportion</p>
+<pre class="r"><code>dataset$year = as.numeric(as.character(dataset$year))
+newdataset = filter(dataset, dataset$year &lt;= 1970)
+proportion = sum(newdataset[, 3:4])/sum(dataset[,3:4])
+proportion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>The proportion of mainland North American males aged 20-29 that lived in 1970 or before is 0.1876567</p>
 </div>
 <div id="with-the-tidyverse-package-and-its-functions-do-the-following-with-the-ccso-bookings-data" class="section level3">
 <h3>5. With the tidyverse package and its functions, do the following with the <a href="https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv">CCSO Bookings Data</a>:</h3>
@@ -611,7 +611,6 @@ pops &lt;- unlist(lapply(dataset.years.list, function(x) sum(x[, 3:4])))</code><
 ## 
 ##     :, %in%, is.double, match, order, rank</code></pre>
 <pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.5.2</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:gdata':
@@ -623,78 +622,7 @@ pops &lt;- unlist(lapply(dataset.years.list, function(x) sum(x[, 3:4])))</code><
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>ccso = read.csv(&quot;https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv&quot;)
-head(ccso)</code></pre>
-<pre><code>##   BOOKING.DATE BOOKING.NUMBER BOOKING.TIME              CUSTODY.CLASS
-## 1     1/1/2011      2.011e+11      1:05:19 Sentenced IDOC (CCSO ONLY)
-## 2     1/1/2011      2.011e+11      1:05:19 Sentenced IDOC (CCSO ONLY)
-## 3     1/1/2011      2.011e+11      2:36:29                           
-## 4     1/1/2011      2.011e+11      2:36:29                           
-## 5     1/1/2011      2.011e+11      2:36:29                           
-## 6     1/1/2011      2.011e+11      3:13:42                           
-##      EMPLOYMENT.STATUS     INCARCERATION.REASON JACKET.NUMBER JACKET.TYPE
-## 1 Employed - Full Time Arrest - Without Warrant         31830           A
-## 2 Employed - Full Time Arrest - Without Warrant         31830           A
-## 3              Student Arrest - Without Warrant         64396           A
-## 4              Student Arrest - Without Warrant         64396           A
-## 5              Student Arrest - Without Warrant         64396           A
-## 6           Unemployed Arrest - Without Warrant       1013464           A
-##             PRISONER.TYPE RELEASED.DATE
-## 1 Misdemeanor Arraignment     2/28/2011
-## 2 Misdemeanor Arraignment     2/28/2011
-## 3      Felony Arraignment      1/1/2011
-## 4      Felony Arraignment      1/1/2011
-## 5      Felony Arraignment      1/1/2011
-## 6 Misdemeanor Arraignment      1/1/2011
-##                                      RELEASED.REASON RELEASED.TIME
-## 1 Sentenced (transfer) to State Corrections        Y       1:17:41
-## 2 Sentenced (transfer) to State Corrections        Y       1:17:41
-## 3                                   Cash Bond Posted      15:28:45
-## 4                                   Cash Bond Posted      15:28:45
-## 5                                   Cash Bond Posted      15:28:45
-## 6                                   Cash Bond Posted      17:18:54
-##   CHARGE.STATUTE                               CRIME.CODE STATUTE.TYPE
-## 1     720-5/12-3                                  BATTERY           NA
-## 2    730-5/5-6-4                      PROBATION VIOLATION           NA
-## 3   720-5/12-3.2                         DOMESTIC BATTERY           NA
-## 4     720-5/12-4                       AGGRAVATED BATTERY           NA
-## 5    720-550/4-B CANNABIS: POSSESSION OF 30 GRAMS OR LESS           NA
-## 6   720-5/12-3.2                         DOMESTIC BATTERY           NA
-##       CITY  RACE  SEX    STATE ZIP.CODE CITIZENSHIP MARITIAL.STATUS
-## 1  RANTOUL White Male ILLINOIS    61866          US          Single
-## 2  RANTOUL White Male ILLINOIS    61866          US          Single
-## 3   URBANA White Male ILLINOIS    61802          US          Single
-## 4   URBANA White Male ILLINOIS    61802          US          Single
-## 5   URBANA White Male ILLINOIS    61802          US          Single
-## 6 FLORENCE Black Male KENTUCKY    41042          US         Married
-##   MILITARY                                     OCCUPATION
-## 1     None SERVICE PERSONNEL(HOTEL,RESTAURANT,NIGHT CLUB)
-## 2     None SERVICE PERSONNEL(HOTEL,RESTAURANT,NIGHT CLUB)
-## 3                                     CONSTRUCTION WORKER
-## 4                                     CONSTRUCTION WORKER
-## 5                                     CONSTRUCTION WORKER
-## 6                                              UNEMPLOYED
-##                       SCHOOL                      ARREST.AGENCY
-## 1 Graduated from high school Champaign County Sherriff's Office
-## 2 Graduated from high school Champaign County Sherriff's Office
-## 3         Urbana High School           Urbana Police Department
-## 4         Urbana High School           Urbana Police Department
-## 5         Urbana High School           Urbana Police Department
-## 6 Graduated from high school        Champaign Police Department
-##   Age.at.Arrest Age.at.Release Booking.Date.Time Release.Date.Time
-## 1            42             42  1/01/11 01:05:19  2/28/11 01:17:41
-## 2            42             42  1/01/11 01:05:19  2/28/11 01:17:41
-## 3            28             28  1/01/11 02:36:29  1/01/11 15:28:45
-## 4            28             28  1/01/11 02:36:29  1/01/11 15:28:45
-## 5            28             28  1/01/11 02:36:29  1/01/11 15:28:45
-## 6            40             40  1/01/11 03:13:42  1/01/11 17:18:54
-##   Days.in.Jail Hours Minutes Seconds  X
-## 1           58     0      12      22 NA
-## 2           58     0      12      22 NA
-## 3            0    12      52      16 NA
-## 4            0    12      52      16 NA
-## 5            0    12      52      16 NA
-## 6            0    14       5      12 NA</code></pre>
+<pre class="r"><code>ccso = read.csv(&quot;https://uofi.box.com/shared/static/9elozjsg99bgcb7gb546wlfr3r2gc9b7.csv&quot;)</code></pre>
 <pre class="r"><code>newa = filter(ccso,  Age.at.Arrest &gt;= 17 &amp; Age.at.Arrest &lt;= 23 &amp; ccso$STATE != &quot;ILLINOIS&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &gt;= &quot;2012/01/01&quot; &amp; as.Date(ccso$BOOKING.DATE, &quot;%m/%d/%Y&quot;) &lt; &quot;2013/01/01&quot;)
 dim(newa)</code></pre>
 <pre><code>## [1] 102  35</code></pre>
